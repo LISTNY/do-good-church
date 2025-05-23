@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Do Good Churches</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <h1>Do Good Churches</h1>
+        <p>Exploring the community impact of Brooklyn's churches</p>
+    </header>
+    <main>
+        <div id="map" style="height: 500px;"></div>
+        <section id="church-list"></section>
+        <form id="suggest-form" name="church-suggestion" method="POST" netlify>
+            <h2>Suggest a Church</h2>
+            <input type="text" name="name" placeholder="Church Name" required />
+            <input type="text" name="address" placeholder="Church Address" required />
+            <textarea name="details" placeholder="What makes this church impactful?" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
