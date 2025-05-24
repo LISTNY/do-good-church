@@ -1,37 +1,74 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Initialize map
-    const map = L.map('map').setView([40.6782, -73.9442], 12); // Brooklyn
+const churches = [
+{
+name: "Bethany Baptist Church",
+address: "460 Marcus Garvey Blvd, Brooklyn, NY 11216",
+zip: "11216",
+score: 35,
+activities: ["food pantry", "youth ministry", "affordable housing"],
+lat: 40.6801,
+lng: -73.9366
+},
+{
+name: "St. Paul’s Community Baptist Church",
+address: "859 Hendrix St, Brooklyn, NY 11207",
+zip: "11207",
+score: 45,
+activities: ["afterschool", "civic engagement", "counseling"],
+lat: 40.6586,
+lng: -73.8817
+},
+{
+name: "Mt. Lebanon Baptist Church",
+address: "228 Decatur St, Brooklyn, NY 11233",
+zip: "11233",
+score: 25,
+activities: ["weekly community event", "economic empowerment"],
+lat: 40.6821,
+lng: -73.9233
+}
+];
 
-    // Add OpenStreetMap tiles
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
+const map = L.map('map').setView([40.6782, -73.9442], 12);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '© OpenStreetMap'
+}).addTo(map);
 
-    // Sample church data (we'll automate this later)
-    const churches = [
-        {
-            name: "Bethany Baptist Church",
-            address: "460 Marcus Garvey Blvd, Brooklyn, NY 11216",
-            activities: ["Food Pantry", "Youth Ministry", "Affordable Housing"]
-        },
-        {
-            name: "St. Paul's Community Baptist Church",
-            address: "859 Hendrix St, Brooklyn, NY 11207",
-            activities: ["Afterschool Program", "Health Services", "Civic Engagement"]
-        }
-        ];
+let markers = [];
 
-        // Add markers
-        churches.forEach(church => {
-            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(church.address)}`)
-                .then(res => res.json())
-                .then(data => {
-                    if (data.length > 0) {
-                        const lat = data[0].lat;
-                        const lon = data[0].lon;
-                        L.marker([lat, lon]).addTo(map)
-                            .bindPopup(`<strong>${church.name}</strong><br>${church.address}<br><ul>${church.activities.map(a => `<li>${a}</li>`).join('')}</ul>`);
-                    }
-                });
-      });
+function addMarkers(filteredChurches) {
+markers.forEach(marker => map.removeLayer(marker));
+markers = [];
+
+filteredChurches.forEach(church => {
+const popupContent = `
+<div style="text-align: center;">
+<div style="font-size: 28px; font-weight: bold; color: #2E7D32; margin-bottom: 4px;">
+Score: ${church.score}
+</div>
+<div style="font-size: 18px; font-weight: 600; margin-bottom: 6px;">
+${church.name}
+</div>
+<ul style="text-align: left; padding-left: 20px; font-size: 14px; margin-bottom: 6px;">
+${church.activities.map(act => `<li>${act}</li>`).join('')}
+</ul>
+<div style="font-size: 12px; color: #555;">
+${church.address}
+</div>
+</div>
+`;
+const marker = L.marker([church.lat, church.lng])
+.addTo(map)
+.bindPopup(popupContent);
+markers.push(marker);
+});
+}
+
+// Initial display of all churches
+addMarkers(churches);
+
+document.getElementById('zipSearchForm').addEventListener('submit', function(e) {
+e.preventDefault();
+const zip = document.getElementById('zipInput').value.trim();
+const filtered = churches.filter(church => church.zip === zip);
+addMarkers(filtered);
 });
