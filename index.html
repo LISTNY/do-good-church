@@ -12,7 +12,15 @@
         <p>Exploring the community impact of Brooklyn's churches</p>
     </header>
     <main>
-        <div id="map" style="height: 500px;"></div>
+    <!-- Add inside <head> -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- Replace <div id="map"...> block -->
+    <div id="map" style="height: 500px;"></div>
+
+    <!-- Add before </body> -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
         <section id="church-list"></section>
         <form id="suggest-form" name="church-suggestion" method="POST" netlify>
             <h2>Suggest a Church</h2>
