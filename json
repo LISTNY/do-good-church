@@ -1,0 +1,31 @@
+[
+  {
+    "name": "Bethany Baptist Church",
+    "address": "460 Marcus Garvey Blvd, Brooklyn, NY 11216",
+    "score": 35,
+    "activities": [
+        "food pantry",
+        "youth ministry",
+        "affordable housing"
+  ]
+},
+{
+    "name": "St. Paul\u2019s Community Baptist Church",
+    "address": "859 Hendrix St, Brooklyn, NY 11207",
+    "score": 45,
+    "activities": [
+        "afterschool",
+        "civic engagement",
+        "counseling"
+  ]
+},
+{
+    "name": "Mt. Lebanon Baptist Church",
+    "address": "228 Decatur St, Brooklyn, NY 11233",
+    "score": 25,
+    "activities": [
+        "weekly community event",
+        "economic empowerment"
+  ]
+}
+]
