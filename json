@@ -8,8 +8,8 @@
         "youth ministry",
         "affordable housing"
   ]
-},
-{
+  },
+  {
     "name": "St. Paul\u2019s Community Baptist Church",
     "address": "859 Hendrix St, Brooklyn, NY 11207",
     "score": 45,
@@ -18,8 +18,8 @@
         "civic engagement",
         "counseling"
   ]
-},
-{
+  },
+  {
     "name": "Mt. Lebanon Baptist Church",
     "address": "228 Decatur St, Brooklyn, NY 11233",
     "score": 25,
@@ -27,5 +27,5 @@
         "weekly community event",
         "economic empowerment"
   ]
-}
+  }
 ]
